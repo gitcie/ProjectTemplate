@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage('assembleRelease'){
       steps{
-        sh './gradlew assembleRelease'
+        sh 'gradle assembleRelease'
       }
     }
   }
