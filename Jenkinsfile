@@ -10,7 +10,7 @@ pipeline{
       stage('Unit test') {
         steps {
           // Compile and run the unit tests for the app and its dependencies
-          sh './gradlew testDebugUnitTest testDebugUnitTest'
+          sh 'gradle testDebugUnitTest testDebugUnitTest'
 
           // Analyse the test results and update the build result as appropriate
           junit '**/TEST-*.xml'
@@ -28,7 +28,7 @@ pipeline{
       stage('Static analysis') {
         steps {
           // Run Lint and analyse the results
-          sh './gradlew lintDebug'
+          sh 'gradle lintDebug'
           androidLint pattern: '**/lint-results-*.xml'
         }
       }
