@@ -7,6 +7,15 @@ pipeline{
           sh 'gradle compileDebugSources'
         }
       }
+      stage('Unit test') {
+        steps {
+          // Compile and run the unit tests for the app and its dependencies
+          sh 'gradle testDebugUnitTest testDebugUnitTest'
+
+          // Analyse the test results and update the build result as appropriate
+          junit '**/TEST-*.xml'
+        }
+      }
       stage('Build APK') {
         steps {
           // Finish building and packaging the APK
@@ -14,6 +23,13 @@ pipeline{
 
           // Archive the APKs so that they can be downloaded from Jenkins
           archiveArtifacts '**/*.apk'
+        }
+      }
+      stage('Static analysis') {
+        steps {
+          // Run Lint and analyse the results
+          sh 'gradle lintDebug'
+          androidLint pattern: '**/lint-results-*.xml'
         }
       }
       stage('Deploy') {
