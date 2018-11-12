@@ -40,12 +40,12 @@ pipeline{
           // Upload the APK to Google Play
           androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
         }
-        post {
-          success {
+        //post {
+          //success {
             // Notify if the upload succeeded
-            mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: 'Check it out!'
-          }
-        }
+            //mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: 'Check it out!'
+          //}
+        //}
       }
     }
     post {
