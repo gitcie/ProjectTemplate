@@ -19,7 +19,7 @@ pipeline{
       stage('Deploy') {
         when {
           // Only execute this stage when building from the `beta` branch
-          branch 'jenkins-test'
+          not {branch 'master'}
         }
         environment {
           // Assuming a file credential has been added to Jenkins, with the ID 'my-app-signing-keystore',
