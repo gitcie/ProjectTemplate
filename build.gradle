@@ -45,7 +45,8 @@ boolean isInJenkins() {
     }
     String str = map.get("Path")
     if (str != null) {
-        println("ENV不为空")
+        def pass = System.getenv("SIGNING_KEY_PASSWORD")
+        println("ENV不为空${pass}")
         //it's windows
         return false
     } else {
