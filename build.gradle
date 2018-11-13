@@ -45,7 +45,7 @@ boolean isInJenkins() {
     }
     String str = map.get("Path")
     if (str != null) {
-        def pass = System.getenv("JENKINS_HOME")
+        def pass = System.getenv("SIGN_PWD")
         println("ENV不为空${pass}")
         //it's windows
         return false
