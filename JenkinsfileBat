@@ -41,10 +41,15 @@ pipeline{
           androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
         }
         post {
-          success {
-            // Notify if the upload succeeded
-            mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: 'Check it out!'
-          }
+            success {
+              // Notify if the upload succeeded
+              mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: 'Check it out!'
+             }
+
+            failure {
+              // Notify developer team of the failure
+              mail to: 'lusiyi@szboanda.net', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
+            }
         }
       }
     }
