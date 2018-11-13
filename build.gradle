@@ -35,16 +35,17 @@ task printENV(){
     }else{
         println("不是jenkins环境")
     }
-    println('git symbolic-ref --short -q HEAD'.execute().text.trim())
 }
 
 boolean isInJenkins() {
     Map<String, String> map = System.getenv()
     if (map == null) {
+        println("ENV为空")
         return false
     }
     String str = map.get("Path")
     if (str != null) {
+        println("ENV不为空")
         //it's windows
         return false
     } else {
