@@ -40,7 +40,7 @@ pipeline{
         post {
             success {
               // Notify if the upload succeeded
-              mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: 'Check it out! visit ${env.BUILD_URL}'
+              mail to: 'lusiyi@szboanda.net', subject: 'New build available!', body: "Check it out! visit ${env.BUILD_URL}"
              }
 
             failure {
