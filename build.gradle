@@ -28,3 +28,32 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task printENV(){
+    if(isInJenkins()){
+        println("是jenkins环境")
+    }else{
+        println("不是jenkins环境")
+    }
+    println('git symbolic-ref --short -q HEAD'.execute().text.trim())
+}
+
+boolean isInJenkins() {
+    Map<String, String> map = System.getenv()
+    if (map == null) {
+        return false
+    }
+    String str = map.get("Path")
+    if (str != null) {
+        //it's windows
+        return false
+    } else {
+        str = ""
+        Iterator it = map.iterator()
+        while (it.hasNext()) {
+            str += it.next()
+        }
+        println("变量值：" + str)
+        return str.contains("jenkins")
+    }
+}
