@@ -39,10 +39,14 @@ android {
     signingConfigs {
         release {
             if(isInJenkins()) {
-                storeFile file(System.getenv("SIGNING_KEYSTORE"))
-                storePassword System.getenv("SIGNING_KEY_PASSWORD")
-                keyAlias "androidreleasekey"
-                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+                def storePath = System.getenv("SIGNING_KEYSTORE")
+                def storePass = System.getenv("SIGNING_KEY_PASSWORD")
+                println("签名文件地址：${storePath}" )
+                println("签名文件密码：${storePass}" )
+                storeFile file(storePath)
+                storePassword storePass
+                keyAlias "androiddebugkey"
+                keyPassword storePass
             }else{
                 storeFile file('./signing/release.keystore')
                 storePassword "android"
