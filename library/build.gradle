@@ -86,22 +86,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-boolean isInJenkins() {
+static boolean isInJenkins() {
     Map<String, String> map = System.getenv()
     if (map == null) {
         return false
     }
-    String str = map.get("Path")
-    if (str != null) {
-        //it's windows
-        return false
-    } else {
-        str = ""
-        Iterator it = map.iterator()
-        while (it.hasNext()) {
-            str += it.next()
-        }
-        println("变量值：" + str)
-        return str.contains("jenkins")
-    }
+    String str = map.get("JENKINS_HOME")
+    return str != null && str.contains("Jenkins")
 }
