@@ -28,7 +28,7 @@ pipeline{
           SIGNING_KEYSTORE = credentials('android-sign-keystore')
 
           // Similarly, the value of this variable will be a password stored by the Credentials Plugin
-          SIGNING_KEY_PASSWORD = credentials('android-keystore=pass')
+          SIGNING_KEY_PASSWORD = credentials('android-keystore-pass')
         }
         steps {
           // Build the app in release mode, and sign the APK using the environment variables
