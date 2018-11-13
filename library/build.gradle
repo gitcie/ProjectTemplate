@@ -71,6 +71,15 @@ android {
         }
     }
 
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                if (buildType.name == 'release'){
+                    def timeStr = new Date().format("yyyyMMddHHmm")
+                    outputFileName = "Template_${defaultConfig.versionName}_${timeStr}_${buildType.name}.apk"
+                }
+            }
+    }
 }
 
 dependencies {
