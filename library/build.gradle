@@ -29,13 +29,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     signingConfigs {
         release {
             if(isInJenkins()) {
@@ -48,11 +41,20 @@ android {
                 keyAlias "androiddebugkey"
                 keyPassword storePass
             }else{
-                storeFile file('./signing/release.keystore')
+                println("签名文件密码" )
+                storeFile file('/Users/powerdata/workspace/Android/release.keystore')
                 storePassword "android"
                 keyAlias "androiddebugkey"
                 keyPassword "android"
             }
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
