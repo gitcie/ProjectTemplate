@@ -1,4 +1,10 @@
 pipeline{
+  //agent {
+        //docker{
+            //image ''
+            //args ''
+        //}
+  //}
   agent any
   stages {
       stage('Compile') {
@@ -10,7 +16,7 @@ pipeline{
       stage('Build APK') {
             steps {
                   // Finish building and packaging the APK
-                  sh 'gradle assembleDebug'
+                  sh './gradlew assembleDebug'
 
                   // Archive the APKs so that they can be downloaded from Jenkins
                   archiveArtifacts '**/*.apk'
@@ -32,7 +38,7 @@ pipeline{
             }
             steps {
                   // Build the app in release mode, and sign the APK using the environment variables
-                  sh 'gradle assembleRelease'
+                  sh './gradlew assembleRelease'
 
                   // Archive the APKs so that they can be downloaded from Jenkins
                   archiveArtifacts '**/**release.apk'
