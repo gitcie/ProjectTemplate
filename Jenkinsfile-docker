@@ -10,7 +10,7 @@ pipeline{
       stage('Compile') {
             steps {
               // Compile the app and its dependencies
-              sh 'gradle compileDebugSources'
+              sh './gradlew compileDebugSources'
             }
       }
       stage('Build APK') {
