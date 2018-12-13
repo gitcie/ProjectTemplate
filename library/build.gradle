@@ -20,7 +20,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -85,17 +85,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.support_version}"
-    implementation "com.android.support.constraint:constraint-layout:${rootProject.ext.constraint_version}"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
     //第三方
     implementation rootProject.ext.dependencies["kotlin-jdk7"]
     implementation rootProject.ext.dependencies["kotlin-reflect"]
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+
+apply from: 'http://gitlab.powerdata.com.cn/Android/StaticAssets/raw/master/maven/upload.gradle'
 
 static boolean isInJenkins() {
     Map<String, String> map = System.getenv()
